@@ -19,23 +19,11 @@ package com.imkiva.xart.eventbus;
 import java.lang.reflect.Method;
 
 /**
- * 订阅某个事件的函数类,包含了函数信息、参数名、执行的线程模式
- *
  * @author mrsimple
  */
 class TargetMethod {
-    /**
-     * 订阅者的目标函数
-     */
     public Method method;
-    /**
-     * 事件类型
-     */
-//    public Class<?> eventType;
     public EventType eventType;
-    /**
-     * 处理事件的线程模式
-     */
     public ThreadMode threadMode;
 
     /**

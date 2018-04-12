@@ -23,8 +23,6 @@ import com.imkiva.xart.eventbus.Subscription;
 
 
 /**
- * 事件处理在UI线程,通过Handler将事件处理post到UI线程的消息队列
- *
  * @author mrsimple
  */
 public class UIThreadEventHandler implements EventHandler {
@@ -43,13 +41,7 @@ public class UIThreadEventHandler implements EventHandler {
      * @param event
      */
     public void handleEvent(final Subscription subscription, final Object event) {
-        mUIHandler.post(new Runnable() {
-
-            @Override
-            public void run() {
-                mEventHandler.handleEvent(subscription, event);
-            }
-        });
+        mUIHandler.post(() -> mEventHandler.handleEvent(subscription, event));
     }
 
 }

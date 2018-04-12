@@ -21,26 +21,12 @@ import java.lang.ref.WeakReference;
 import java.lang.reflect.Method;
 
 /**
- * 订阅者对象,包含订阅者和目标方法
- *
  * @author mrsimple
  */
 public class Subscription {
-    /**
-     * 订阅者对象
-     */
     public Reference<Object> subscriber;
-    /**
-     * 接受者的方法
-     */
     public Method targetMethod;
-    /**
-     * 执行事件的线程模型
-     */
     public ThreadMode threadMode;
-    /**
-     * 事件类型
-     */
     public EventType eventType;
 
     /**

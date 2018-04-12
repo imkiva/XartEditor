@@ -22,8 +22,6 @@ import java.lang.reflect.InvocationTargetException;
 
 
 /**
- * 事件在哪个线程post,事件的接收就在哪个线程
- *
  * @author mrsimple
  */
 public class DefaultEventHandler implements EventHandler {
@@ -39,13 +37,8 @@ public class DefaultEventHandler implements EventHandler {
             return;
         }
         try {
-            // 执行
             subscription.targetMethod.invoke(subscription.subscriber.get(), event);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }

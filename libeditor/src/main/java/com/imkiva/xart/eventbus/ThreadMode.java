@@ -17,21 +17,19 @@
 package com.imkiva.xart.eventbus;
 
 /**
- * 事件发布的线程模式枚举
- *
  * @author mrsimple
  */
 public enum ThreadMode {
     /**
-     * 将事件执行在UI线程
+     * ui thread
      */
     MAIN,
     /**
-     * 在发布线程执行
+     * poster thread
      */
     POST,
     /**
-     * 将事件执行在一个子线程中
+     * child thread
      */
     ASYNC
 }

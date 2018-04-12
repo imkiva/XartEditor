@@ -23,20 +23,12 @@ import com.imkiva.xart.eventbus.Subscription;
 
 
 /**
- * 事件的异步处理,将事件的处理函数执行在子线程中
- *
  * @author mrsimple
  */
 public class AsyncEventHandler implements EventHandler {
 
-    /**
-     * 事件分发线程
-     */
     DispatcherThread mDispatcherThread;
 
-    /**
-     * 事件处理器
-     */
     EventHandler mEventHandler = new DefaultEventHandler();
 
     public AsyncEventHandler() {
@@ -44,20 +36,8 @@ public class AsyncEventHandler implements EventHandler {
         mDispatcherThread.start();
     }
 
-    /**
-     * 将订阅的函数执行在异步线程中
-     *
-     * @param subscription
-     * @param event
-     */
     public void handleEvent(final Subscription subscription, final Object event) {
-        mDispatcherThread.post(new Runnable() {
-
-            @Override
-            public void run() {
-                mEventHandler.handleEvent(subscription, event);
-            }
-        });
+        mDispatcherThread.post(() -> mEventHandler.handleEvent(subscription, event));
     }
 
     /**
@@ -65,9 +45,6 @@ public class AsyncEventHandler implements EventHandler {
      */
     class DispatcherThread extends HandlerThread {
 
-        /**
-         * 关联了AsyncExecutor消息队列的Handler
-         */
         protected Handler mAsyncHandler;
 
         /**
